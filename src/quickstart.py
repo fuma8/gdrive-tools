@@ -10,8 +10,7 @@ from googleapiclient.errors import HttpError
 # If modifying these scopes, delete the file token.json.
 SCOPES = ["https://www.googleapis.com/auth/drive"]
 
-
-def main():
+def get_credentials():
   """Shows basic usage of the Drive v3 API.
   Prints the names and ids of the first 10 files the user has access to.
   """
@@ -33,9 +32,13 @@ def main():
     # Save the credentials for the next run
     with open("../token.json", "w") as token:
       token.write(creds.to_json())
-
-  try:
     service = build("drive", "v3", credentials=creds)
+    
+  return service 
+
+def main():
+  try:
+    service = get_credentials()
     # Call the Drive v3 API
     results = (
         service.files()
