@@ -32,7 +32,7 @@ def get_credentials():
     # Save the credentials for the next run
     with open("../token.json", "w") as token:
       token.write(creds.to_json())
-    service = build("drive", "v3", credentials=creds)
+  service = build("drive", "v3", credentials=creds)
     
   return service 
 
